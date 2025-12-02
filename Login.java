@@ -10,7 +10,7 @@ public class Login extends JFrame implements ActionListener {
     Login() {
         getContentPane().setBackground(Color.WHITE);
         setLayout(null); 
-        ImageIcon il = new ImageIcon("picture/logo.jpg"); 
+        ImageIcon il = new ImageIcon("logo.jpg"); 
 
         JLabel image = new JLabel(il);
         add(image);
