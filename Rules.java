@@ -64,6 +64,7 @@ public class Rules extends JFrame implements ActionListener {
             // JOptionPane.showMessageDialog(this, "Rules button clicked!");
         } else if(command.equals("Start")) {
             // JOptionPane.showMessageDialog(this, "Back button clicked!");
+            new Quiz(name); 
             setVisible(false); 
         }
     }
