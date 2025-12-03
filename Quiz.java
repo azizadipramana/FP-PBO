@@ -178,7 +178,62 @@ public class Quiz extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (timer >= 0) {
                     timer--;
-                }
+                } 
+                
+                if (timer == 0){
+                    opt1.setEnabled(true); 
+                    opt2.setEnabled(true); 
+                    opt3.setEnabled(true); 
+                    opt4.setEnabled(true); 
+                    
+                    timer = 15; 
+                    
+                    repaint(); 
+                    count++; 
+                    start(count); 
+                    ans_given = 1; 
+                  
+                    if(groupoptions.getSelection() == null){
+                        useranswers[count][0] = "";
+                    } else {
+                        useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                    }
+                    
+                    if(count == 9){
+                        next.setEnabled(false); 
+                        submit.setEnabled(true); 
+                    }
+                    
+                    
+                    if (count == 10){
+                        if(groupoptions.getSelection() == null){
+                            useranswers[count][0] = "";
+                        } else {
+                            useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                        }
+                
+                        for(int i = 0; i < useranswers.length; i++){
+                            if(useranswers[i][0].equals(answer[i][1])){
+                                score += 10; 
+                            } else {
+                                score += 0;
+                            }
+                        }
+                        setVisible(false); 
+                    } else {
+                        if(groupoptions.getSelection() == null){
+                            useranswers[count][0] = "";
+                        } else {
+                            useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+                        }
+                        // count++; 
+                        start(count); 
+                    }
+                                     
+                                                          
+                    
+                } 
+                
                 repaint(); 
             }
         });
@@ -193,6 +248,8 @@ public class Quiz extends JFrame implements ActionListener {
             opt2.setEnabled(true); 
             opt3.setEnabled(true); 
             opt4.setEnabled(true); 
+            
+            timer = 15; 
             
             repaint(); 
             count++; 
@@ -231,7 +288,7 @@ public class Quiz extends JFrame implements ActionListener {
                 } else {
                     useranswers[count][0] = groupoptions.getSelection().getActionCommand();
                 }
-                count++; 
+                // count++; 
                 start(count); 
             }
             
@@ -247,6 +304,10 @@ public class Quiz extends JFrame implements ActionListener {
             
         } else if (ae.getSource() == submit){
             ans_given = 1; 
+            System.out.println("Hasil : " + score); 
+            new Score(username, score);
+            setVisible(false); 
+            
             if(groupoptions.getSelection() == null){
                 useranswers[count][0] = "";
             } else {
@@ -259,9 +320,8 @@ public class Quiz extends JFrame implements ActionListener {
                 } else {
                     score += 0;
                 }
-                }
-            setVisible(false); 
-            new Score(username, score); 
+            }
+            
         }
     }
     
@@ -275,7 +335,7 @@ public class Quiz extends JFrame implements ActionListener {
         if(timer >=0){
             g.drawString(time, 1000, 460); 
         } else {
-            g.drawString("Times Up!!!", 1000, 460);
+            // g.drawString("Times Up!!!", 1000, 460);
         }
         
         if (ans_given == 1){
