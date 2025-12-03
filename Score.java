@@ -1,32 +1,50 @@
+ 
 
-import javax.swing.*; 
-import java.awt.*; 
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.*;
 
-public class Score extends JFrame implements ActionListener{ 
-    
-    Score(String name, int score){
-        setBounds(50, 0, 1440, 850);
-        getContentPane().setBackground(Color.WHITE); 
-        setLayout(null); 
+public class Score extends JFrame implements ActionListener {
+
+    Score(String name, int score) {
+        setBounds(400, 150, 750, 550);
+        getContentPane().setBackground(Color.WHITE);
+        setLayout(null);
         
-        ImageIcon il = new ImageIcon("exam.jpg");
-        Image img = il.getImage(); 
-        Image newImg = img.getScaledInstance(1440, 300, Image.SCALE_SMOOTH);
-        
-        ImageIcon finalImage = new ImageIcon(newImg);  
-        
-        JLabel image = new JLabel(finalImage);
+        ImageIcon il = new ImageIcon("bad.jpg"); 
+        JLabel image = new JLabel(il);
         add(image);
-        image.setBounds(0, 0, 1440, 300); 
-        setVisible(true); 
-    }
-    
-    public void actionPerformed(ActionEvent ae){
+        image.setBounds(0, 0, 600, 500); 
         
+        JLabel heading = new JLabel("Thank You"); 
+        heading.setBounds(750, 60, 300, 45); 
+        heading.setFont(new Font("Mongolian Baiti", Font.BOLD, 40)); 
+        heading.setForeground(new Color(30, 144, 254)); 
+        add(heading); 
+        
+        JLabel result = new JLabel("Your score is " + score);
+        result.setBounds(750, 200, 300, 30);
+        result.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        add(result);
+        
+        JButton again = new JButton("Play Again"); 
+        again.setBounds(800, 270, 150, 25); 
+        again.setBackground(new Color(30, 144, 254)); 
+        again.setForeground(Color.WHITE); 
+        again.addActionListener(this); 
+        add(again); 
+        
+        setSize(1200, 500);
+        setLocation(200, 150);
+        setVisible(true);
     }
     
-    public static void main(String[] args){
-        new Score("User", 0); 
+    public void actionPerformed(ActionEvent ae) {
+        setVisible(false);
+        new Login();
+    }
+
+    public static void main(String[] args) {
+        new Score("User", 0);
     }
 }
