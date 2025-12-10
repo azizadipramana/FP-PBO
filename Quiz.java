@@ -33,14 +33,11 @@ public class Quiz extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
-        ImageIcon il = new ImageIcon("exam.jpg"); 
-        Image img = il.getImage();
-        Image newImg = img.getScaledInstance(1440, 300, Image.SCALE_SMOOTH);
-        ImageIcon finalImage = new ImageIcon(newImg); 
-        
-        JLabel image = new JLabel(finalImage);
+        ImageIcon bgRaw = new ImageIcon("quiz_bg.png");
+        Image bgScaled = bgRaw.getImage().getScaledInstance(getWidth(), 250, Image.SCALE_SMOOTH);
+        JLabel image = new JLabel(new ImageIcon(bgScaled));
+        image.setBounds(0, 0, getWidth(), 250);
         add(image);
-        image.setBounds(0, 0, 1440, 300);
         
         qno = new JLabel();
         qno.setBounds(100, 330, 50, 40);
